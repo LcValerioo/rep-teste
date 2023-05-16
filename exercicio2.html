@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercitando os conhecimentos</title>
+        <style>
+            div#geral {
+                margin: 30px;
+            }
+            div#tabela table {
+                border-collapse: collapse;
+            }
+            div#tabela table, div#tabela th, div#tabela td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+            div#tabela th {
+                background-color: black;
+                color: white;
+            }
+            div#tabela td:hover {
+                background-color: #999;
+            }
+            p {
+                font-family: sans-serif;
+                
+            }
+            img {
+                position: absolute;
+                width: 300px;
+                max-width: 500px;
+                min-width: 299px;
+                right: 5px;
+                top: 5px;
+                border: 5px solid #89f110;
+                border-radius: 15px 5px 15px 15px;
+                box-shadow: 10px 10px 10px 0px #89f110;
+            }
+            body {
+                background: linear-gradient( rgb(255, 255, 255), rgba(0,255,0,1));
+            }
+        </style>
+        <script>
+            var cadastro = [];
+
+            function finalizar() {
+                var pizza = document.getElementsByTagName("pizza").value;
+                var tamanho = document.getElementsByTagName("tamanho").value;
+                var extra = document.getElementsByTagName("extra").value;
+                var bebidas = document.getElementsByTagName("bebidas").value;
+                var nome = document.getElementById("nome").value;
+                var obs = document.getElementById("obs").value;
+                var elemento = {nome: nome, pizza: pizza, tamanho: tamanho, extra: extra, bebidas: bebidas, obs: obs};
+
+                cadastro.push(elemento);
+                console.log(cadastro);
+
+               var retorno = exibirPedidos(cadastro);
+                document.getElementById("relatorio").innerHTML = retorno;
+                document.getElementsByTagName
+            }
+
+            function exibirPedidos (estrutura) {
+                var retorno = "<table border = 1>";
+                retorno += "<tr><th>Índice</th><th>Nome</th><th>Pizza</th><th>Tamanho</th><th>Extra</th><th>Bebidas</th><th>OBS</th></tr>";
+                estrutura.forEach(function(item,indice){
+                    retorno += "<tr><td>" + (indice+1) + "</td><td><b>" + item.nome + "</b></td><td>" + item.pizza + "</td><td>" + item.tamanho + "</td><td>" + item.extra + "</td><td>" + item.bebidas + "</td><td>" + item.obs +"</td></tr>";    
+                });
+                retorno += "</table>";
+                    return retorno;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Menu de pedido</h1>
+        
+        <form method="get">
+        <div id="geral">
+            <div id="tabela">
+            <table>
+                <tr>
+                    <th>Pizza</th>
+                    <th>Grande</th>
+                    <th>Média</th>
+                    <th>Pequena</th>
+                <tr>
+                <tr>
+                    <td><input type="radio" name="pizza" required value="calabresa" class="pizza">Calabresa</td>
+                    <td>R$ 66,99</td>
+                    <td>R$ 56,99</td>
+                    <td>R$ 50,99</td>
+                <tr>
+                <tr>
+                    <td><input type="radio" name="pizza" required value="Portuguesa" class="pizza">Portuguesa</td>
+                    <td>R$ 60,99</td>
+                    <td>R$ 54,99</td>
+                    <td>R$ 50,99</td>
+                <tr>
+                <tr>
+                    <td><input type="radio" name="pizza" required value="Quatro Queijo" class="pizza">Quatro Queijo</td>
+                    <td>R$ 58,99</td>
+                    <td>R$ 51,99</td>
+                    <td>R$ 40,99</td>
+                <tr>
+                <tr>
+                    <td><input type="radio" name="pizza" required value="Moda da Casa" class="pizza">Moda da Casa</td>
+                    <td>R$ 57,99</td>
+                    <td>R$ 53,99</td>
+                    <td>R$ 47,99</td>
+            </table>
+            <br>
+        </div>
+            
+                <fieldset>
+                <legend>Tamanho da pizza</legend>
+                <p><label> <input type="radio" name="tamanho" required value="pequeno" class="tamanho">Pequena</label></p>
+                <p><label> <input type="radio" name="tamanho" required value="medio" class="tamanho">Médio</label></p>
+                <p><label> <input type="radio" name="tamanho" required value="grande" class="tamanho">Grande</label></p>
+            </fieldset>
+            <fieldset>
+                <legend>Extras</legend>
+                <p><label><input type="checkbox" name="extra" value="borda rechada" class="extra">Borda recheada (Catupiry ou Cheddar) - R$3,00</label></p>
+                <p><label><input type="checkbox" name="extra" value="bacon" class="extra">Bacon extra - R$ 4,00</label></p>
+                <p><label><input type="checkbox" name="extra" value="onion rings" class="extra">Onion Rings - R$ 2,50</label></p>
+                <p><label><input type="checkbox" name="extra" value="queijo extra" class="extra">Queijo Extra - R$ 5,00</label></p>
+            </fieldset>
+            <fieldset>
+                <legend>Bebidas</legend>
+                <p><label><input type="checkbox" name="bebidas" value="coca 2l" class="bebidas">Coca cola - 2L - R$ 10,00</label></p>
+                <p><label><input type="checkbox" name="bebidas" value="coca 600ml" class="bebidas"> Coca cola - 600ml - R$ 5,50</label></p>
+                <p><label><input type="checkbox" name="bebidas" value="del valle" class="bebidas">Del Valle - 1L - R$ 9,90</label></p>
+                <p><label><input type="checkbox" name="bebidas" value="antarctica" class="bebidas">Guaraná Antarctica - 2L - R$ 9,50</label></p>
+                <p><label><input type="checkbox" name="bebidas" value="antarctica" class="bebidas">Guaraná Antarctica - 600ml - R$ 4,50</label></p>
+            </fieldset>
+            <p><label>Nome: <input name="nome" required placeholder="Seu nome" id="nome"></label></p>
+            <p><label>Telefone: <input type="tel" name="telefone" placeholder="Telefone" id="telefone"></label></p>
+            <p><label>Endereço: <input name="endereço" placeholder="endereço" id="endereco"></label></p>
+            <p><label>Observações: <textarea name="comentarios" maxlength="2000" id="obs"></textarea></label></p>
+            <input type="button" value="Finalizar pedido" onclick="finalizar();">
+            </form>
+        </div>
+        <img src="pizza.jpg">
+        <div id="relatorio">Pedidos:</div>
+    </body>
+</html>
